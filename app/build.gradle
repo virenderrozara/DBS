@@ -20,16 +20,48 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    flavorDimensions "environment"
+    productFlavors {
+        dev {
+            dimension "environment"
+            buildConfigField "String", "Base_Url", "\"https://api.data.gov.sg/v1/\""
+        }
+    }
 }
 
+//dependencies {
+//    implementation fileTree(dir: 'libs', include: ['*.jar'])
+//    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+//    implementation 'androidx.appcompat:appcompat:1.1.0'
+//    implementation 'androidx.core:core-ktx:1.1.0'
+//    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+//    implementation 'com.google.android.material:material:1.0.0'
+//    testImplementation 'junit:junit:4.12'
+//    androidTestImplementation 'androidx.test:runner:1.2.0'
+//    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+//}
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.core:core-ktx:1.1.0'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "androidx.appcompat:appcompat:$appCompatVersion"
+    implementation "androidx.core:core-ktx:$ktxVersion"
+    implementation "androidx.constraintlayout:constraintlayout:$constraintVersion"
+    testImplementation "junit:junit:$jUnitVersion"
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2') {
+        exclude module: 'support-annotations'
+    }
+    testImplementation "org.mockito:mockito-core:2.8+"
+    androidTestImplementation "androidx.test:runner:$testRunnerVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$esspresoVersion"
+
+    implementation "com.squareup.okhttp3:okhttp:$okHttpVersion"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okHttpVersion"
+
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecyle_version"
     implementation 'com.google.android.material:material:1.0.0'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.2.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+
 }
